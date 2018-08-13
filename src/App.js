@@ -12,7 +12,9 @@ class App extends Component {
 
   //Your code here:
 
-
+  componentDidMount(){
+    this.handleAddTimer()   //adds one timer initially 
+  }
 
 
 
@@ -38,9 +40,11 @@ class App extends Component {
   }
 
   // returns array of components written in JSX, mapped from this.state.timerIDs
-  renderTimers = () => this.state.timerIDs.map(id => {
-    return <Timer key={id} id={id} removeTimer={this.removeTimer} />
-  })
+  renderTimers = () => {
+    return this.state.timerIDs.map(id => {
+      return <Timer key={id} id={id} removeTimer={this.removeTimer} />
+    })
+  }
 
   // adds a random number for timer ID
   handleAddTimer = () => {
@@ -50,7 +54,7 @@ class App extends Component {
   }
 
   // removeTimer updates state, removing any timer that matches the provided author
-  removeTimer = id => {
+  removeTimer = (id) => {
     this.setState(prevState => ({
       timerIDs: prevState.timerIDs.filter(timer_id => timer_id !== id)
     }))
